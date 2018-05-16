@@ -1,0 +1,12 @@
+/*
+* Video style admin
+*/
+.video-option-meta-box .video-meta-box-label {
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 20px;
+}
+.video-option-meta-box select {
+    padding: 5px 20px 5px 5px;
+    height: auto;
+}
