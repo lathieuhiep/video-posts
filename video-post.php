@@ -70,7 +70,15 @@ if ( !class_exists( 'WP_Video_PostType' ) ) :
         /* Load script */
         function video_post_script() {
 
+            add_action( 'admin_enqueue_scripts', array( $this, 'video_post_backend_scripts' ) );
             add_action( 'wp_enqueue_scripts',array( $this, 'video_post_frontend_scripts' ) );
+
+        }
+
+        /* Backend scripts */
+        function video_post_backend_scripts() {
+
+            wp_enqueue_style( 'video-style', video_post_path. 'assets/css/admin/video-style.css', array(), '' );
 
         }
 
@@ -83,6 +91,6 @@ if ( !class_exists( 'WP_Video_PostType' ) ) :
 
     }
 
-    $WP_Video_PostType = new WP_Video_PostType();
+    new WP_Video_PostType();
 
 endif;
