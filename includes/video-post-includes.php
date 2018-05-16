@@ -6,3 +6,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Include Post Type Video
 include_once 'post-type/video.php';
+
+// Include Option Metabox
+include_once 'options/meta-boxes.php';
