@@ -11,7 +11,7 @@ Text Domain: video-post
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+    exit;
 }
 
 if ( !class_exists( 'WP_Video_PostType' ) ) :
@@ -42,7 +42,7 @@ if ( !class_exists( 'WP_Video_PostType' ) ) :
 
             define( 'video_post_path', plugin_dir_url( __FILE__ ) );
 
-            define( 'video_post_server_path', dirname( __FILE__ ) );
+            define( 'video_post_server_path', plugin_dir_path( __FILE__ ) );
 
         }
 

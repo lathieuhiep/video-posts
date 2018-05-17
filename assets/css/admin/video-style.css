@@ -1,12 +1,22 @@
 /*
 * Video style admin
 */
-.video-option-meta-box .video-meta-box-label {
+#video-post-meta-box .inside {
+    margin: 0;
+    padding: 25px 12px;
+}
+.video-post-option-meta-box .video-post-meta-box-label {
     font-weight: 600;
     display: inline-block;
     margin-right: 20px;
 }
-.video-option-meta-box select {
+.video-post-option-meta-box select {
     padding: 5px 20px 5px 5px;
     height: auto;
+}
+.video-post-option-meta-box .meta-box-video-post-item {
+    margin-bottom: 15px;
+}
+.video-post-option-meta-box .meta-box-video-post-item:last-child {
+    margin-bottom: 0;
 }

@@ -5,6 +5,10 @@
 *---------------------------------------------------------------------
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class WP_Video_PostType_Custom_Meta_Box {
 
     /**
@@ -49,22 +53,30 @@ class WP_Video_PostType_Custom_Meta_Box {
 
 ?>
 
-        <div class="video-option-meta-box">
-            <p>
-                <label for="meta-select-video" class="video-meta-box-label">
+        <div class="video-post-option-meta-box">
+            <div id="meta-box-type-video-post" class="meta-box-video-post-item">
+                <label for="meta-select-video-post" class="video-post-meta-box-label">
                     <?php esc_html_e( 'Type Video:', 'video-post' ); ?>
                 </label>
 
-                <select name="meta-select-video" id="meta-select-video" class="video-meta-box-select">
-                    <option value="link-url" <?php if ( isset ( $video_post_get_meta['meta-select-video'] ) ) selected( $video_post_get_meta['meta-select-video'][0], 'link-url' ); ?>>
+                <select name="meta-select-video-post" id="meta-select-video-post" class="video-meta-box-select">
+                    <option value="link-url" <?php if ( isset ( $video_post_get_meta['meta-select-video-post'] ) ) selected( $video_post_get_meta['meta-select-video-post'][0], 'link-url' ); ?>>
                         <?php esc_html_e( 'Link Url', 'video-post' ); ?>
                     </option>
 
-                    <option value="video-html" <?php if ( isset ( $video_post_get_meta['meta-select-video'] ) ) selected( $video_post_get_meta['meta-select-video'][0], 'video-html' ); ?>>
+                    <option value="video-html" <?php if ( isset ( $video_post_get_meta['meta-select-video-post'] ) ) selected( $video_post_get_meta['meta-select-video-post'][0], 'video-html' ); ?>>
                         <?php esc_html_e( 'Video HTML5', 'video-post' ); ?>
                     </option>
                 </select>
-            </p>
+            </div>
+
+            <div id="meta-box-type-video-url" class="meta-box-video-post-item">
+                <label for="meta-video-post-url" class="video-post-meta-box-label">
+                    <?php esc_html_e( 'Video URL:', 'video-post' ); ?>
+                </label>
+
+                <input type="url" name="meta-video-post-url" id="meta-video-post-url" value="<?php if ( isset ( $video_post_get_meta['meta-video-post-url'] ) ) echo $video_post_get_meta['meta-video-post-url'][0]; ?>" size="40" style="width: 30%" />
+            </div>
         </div>
 
 <?php
@@ -79,6 +91,11 @@ class WP_Video_PostType_Custom_Meta_Box {
         // Add nonce for security and authentication.
         $nonce_name   = isset( $_POST['custom_nonce'] ) ? $_POST['custom_nonce'] : '';
         $nonce_action = 'custom_nonce_action';
+
+        $video_post_meta_box_key    =   array(
+            'meta-select-video-post',
+            'meta-video-post-url'
+        );
 
         // Check if nonce is set.
         if ( ! isset( $nonce_name ) ) {
@@ -105,9 +122,15 @@ class WP_Video_PostType_Custom_Meta_Box {
             return;
         }
 
-        if( isset( $_POST[ 'meta-select-video' ] ) ) {
-            update_post_meta( $post_id, 'meta-select-video', $_POST[ 'meta-select-video' ] );
-        }
+        foreach ( $video_post_meta_box_key as $video_post_meta_box_key_item ) :
+
+            if( isset( $_POST[ $video_post_meta_box_key_item ] ) ) :
+
+                update_post_meta( $post_id, $video_post_meta_box_key_item, $_POST[ $video_post_meta_box_key_item ] );
+
+            endif;
+
+        endforeach;
 
     }
 

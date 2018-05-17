@@ -5,6 +5,10 @@
 *---------------------------------------------------------------------
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 add_action( 'init', 'video_post_type_create', 10 );
 
 function video_post_type_create() {
